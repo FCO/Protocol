@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/FCO/Protocol.svg?branch=master)](https://travis-ci.org/FCO/Protocol)
 # Potocol
 
 ## Description

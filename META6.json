@@ -14,7 +14,7 @@
       "X::Protocol::NonStubs"   : "lib/X/Protocol/NonStubs.pm6"
   },
   "resources" : [ ],
-  "source-url" : "",
+  "source-url" : "https://github.com/FCO/Protocol.git",
   "tags" : [],
   "test-depends" : [
       "Test::META"

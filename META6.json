@@ -1,24 +1,28 @@
 {
   "auth": "zef:FCO",
-  "authors" : [
+  "authors": [
     "Fernando Correa de Oliveira"
   ],
-  "build-depends" : [ ],
-  "depends" : [ ],
-  "description" : "Protocol",
-  "license" : "Artistic-2.0",
-  "name" : "Protocol",
-  "perl" : "6.d",
-  "provides" : {
-      "MetamodelX::Protocol"    : "lib/MetamodelX/Protocol.rakumod",
-      "Protocol"                : "lib/Protocol.rakumod",
-      "X::Protocol::NonStubs"   : "lib/X/Protocol/NonStubs.rakumod"
-  },
-  "resources" : [ ],
-  "source-url" : "https://github.com/FCO/Protocol.git",
-  "tags" : [],
-  "test-depends" : [
-      "Test::META"
+  "build-depends": [
   ],
-  "version" : "0.0.1"
+  "depends": [
+  ],
+  "description": "Protocol",
+  "license": "Artistic-2.0",
+  "name": "Protocol",
+  "perl": "6.d",
+  "provides": {
+    "MetamodelX::Protocol": "lib/MetamodelX/Protocol.rakumod",
+    "Protocol": "lib/Protocol.rakumod",
+    "X::Protocol::NonStubs": "lib/X/Protocol/NonStubs.rakumod"
+  },
+  "resources": [
+  ],
+  "source-url": "https://github.com/FCO/Protocol.git",
+  "tags": [
+  ],
+  "test-depends": [
+    "Test::META"
+  ],
+  "version": "0.0.1"
 }

@@ -1,0 +1,56 @@
+use Test;
+use Protocol;
+
+class Film   { has $.name }
+class Person { has $.name }
+class Animal { has $.name }
+
+{
+    protocol Nameable {
+        method name        { ... }
+        method description { "Type: $.^name()\nName: $.name()" }
+    }
+
+    for |(Film, Person, Animal) xx 2 {
+        my Nameable[ProtocolCoerce] $obj = .new: :name("my-{ .^name }");
+        ok .^can("description").not, "{ .gist } has no description method";
+        ok $obj.^can("description"), "{ $obj.gist } has description method";
+        is $obj.description, "Type: {.^name}+Nameable\nName: " ~ $obj.name, $obj.gist
+    }
+
+    sub test-description($orig, Nameable[ProtocolCoerce] $_) {
+        is .description, "Type: {$orig.^name}+Nameable\nName: " ~ .name, .gist
+    }
+
+    test-description($_, .new: :name("my-{ .^name }")) for |(Film, Person, Animal) xx 2;
+
+    throws-like {
+        test-description(Int, 42);
+    }, Exception, message => /Nameable/;
+}
+
+for ^2 {
+    my protocol MyNameable {
+        method name        { ... }
+        method description { "Type: $.^name()\nName: $.name()" }
+    }
+
+    for |(Film, Person, Animal) xx 2 {
+        my MyNameable[ProtocolCoerce] $obj = .new: :name("my-{ .^name }");
+        ok .^can("description").not, "{ .gist } has no description method";
+        ok $obj.^can("description"), "{ $obj.gist } has description method";
+        is $obj.description, "Type: {.^name}+MyNameable\nName: " ~ $obj.name, $obj.gist
+    }
+
+    sub test-description($orig, MyNameable[ProtocolCoerce] $_) {
+        is .description, "Type: {$orig.^name}+MyNameable\nName: " ~ .name, .gist
+    }
+
+    test-description($_, .new: :name("my-{ .^name }")) for |(Film, Person, Animal) xx 2;
+
+    throws-like {
+        test-description(Int, 42);
+    }, Exception, message => /MyNameable/;
+}
+
+done-testing

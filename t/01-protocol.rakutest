@@ -1,6 +1,6 @@
 use Test;
 
-plan 19;
+plan 18;
 
 use Protocol;
 
@@ -12,23 +12,22 @@ eval-dies-ok Q[protocol Ble { method ble {} }];
 
 eval-dies-ok Q[protocol Ble { method ble {}; method bli { ... } } ];
 
-lives-ok {
-    protocol Writer {
-        method write { ... }
-    }
+protocol Writer {
+    method write { ... }
+    method write-ln { 42 }
 }
 
-ok class W { method write {} } ~~ Writer;
+ok class W { method write { $.gist } } ~~ Writer[ProtocolSubset];
 
-ok W.new ~~ Writer;
+ok W.new ~~ Writer[ProtocolSubset];
 
-my Writer $w;
+my Writer[ProtocolSubset] $w;
 
 lives-ok { $w = W };
 lives-ok { $w = W.new };
 dies-ok  { $w = 42 };
 
-multi a(Writer $w) { can-ok $w, "write" }
-multi a($w)        { ok not $w.^can: "write" }
+multi a(Writer[ProtocolSubset] $w) { can-ok $w, "write" }
+multi a($w)                        { ok not $w.^can("write"), "$w cannot 'write'" }
 
 .&a for |^5, W, W.new, class W2 {has $.write}, W2.new;

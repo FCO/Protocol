@@ -1,6 +1,11 @@
 Revision history for Protocol
 
 {{$NEXT}}
+    - Make it possible accept default implementation methods to protocol
+    - Make protocol accept an argument:
+        - ProtocolClass : returns the class
+        - ProtocolSubset: returns a subset that validates the value
+        - ProtocolCoerce: returns a coerce type
 
 0.0.1  2024-08-09T02:35:25+01:00
     - Initial version

@@ -14,7 +14,7 @@
   "provides": {
     "MetamodelX::Protocol": "lib/MetamodelX/Protocol.rakumod",
     "Protocol": "lib/Protocol.rakumod",
-    "X::Protocol::NonStubs": "lib/X/Protocol/NonStubs.rakumod"
+    "Protocol::Type": "lib/Protocol/Type.rakumod"
   },
   "resources": [
   ],
